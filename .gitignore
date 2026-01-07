@@ -69,12 +69,3 @@ venv.bak/
 # OS
 .DS_Store
 Thumbs.db
-
-# Project specific
-models/*.pkl
-models/*.png
-best_model/*.pkl
-best_model/*.png
-!data/.gitkeep
-!models/.gitkeep
-!best_model/.gitkeep
