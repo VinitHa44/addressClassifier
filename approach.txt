@@ -1,0 +1,49 @@
+PROPERTY ADDRESS CLASSIFICATION - APPROACH DOCUMENTATION
+========================================================
+
+PROBLEM: Classify property addresses into 5 categories: flat, houseorplot, landparcel, commercial unit, others
+
+APPROACH: Traditional ML + NLP Pipeline
+Chosen for interpretability, efficiency, and strong baseline performance.
+
+METHODOLOGY
+===========
+
+1. EDA
+   - Analyze class distribution and address patterns
+   - Identify common keywords per category
+   - Check for class imbalance
+
+2. PREPROCESSING
+   - Lowercase conversion
+   - Remove special characters (keep alphanumeric + spaces)
+   - Preserve numbers (critical for addresses)
+   - Normalize whitespace
+
+3. FEATURE EXTRACTION
+   - TF-IDF Vectorization: ngram_range=(1,2), max_features=5000, min_df=2
+   - Captures unigrams and bigrams (e.g., "flat no", "survey no")
+
+4. MODELS TRAINED
+   a) Logistic Regression: max_iter=1000, class_weight='balanced', random_state=42
+   b) Linear SVM: max_iter=1000, class_weight='balanced', dual=False
+   c) Random Forest: n_estimators=100, max_depth=20, class_weight='balanced'
+
+5. EVALUATION
+   - Primary Metric: Macro F1 Score (handles class imbalance)
+   - Classification Report (per-class precision/recall/F1)
+   - Confusion Matrix visualization
+   - Select best model based on Macro F1
+
+6. SAVED ARTIFACTS
+   - best_model/best_model.pkl
+   - best_model/tfidf_vectorizer.pkl
+   - best_model/label_encoder.pkl
+   - best_model/confusion_matrix.png
+
+7. INFERENCE PIPELINE
+   - Load saved models → Preprocess address → Transform with TF-IDF → Predict → Decode label
+
+EXPECTED PERFORMANCE: Macro F1 ~0.75-0.90
+
+KEY STRENGTHS: Interpretable, reproducible, efficient, handles imbalance, production-ready
