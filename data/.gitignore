@@ -1,7 +1,0 @@
-# Place your dataset files here
-# Required files:
-# - train.csv (with columns: property_address, categories)
-# - val.csv (with columns: property_address, categories)
-
-*.csv
-!.gitkeep
